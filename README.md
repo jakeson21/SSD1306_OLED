@@ -1,2 +1,2 @@
-# SSD1306_OLED
+# Stellaris_SSD1306_OLED
 TI Stellaris library for SSD1306 based OLED screens
