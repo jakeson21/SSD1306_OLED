@@ -3,6 +3,7 @@ TI Stellaris library for SSD1306 based OLED screens
 
 
 This library is a ANSI C adaptation of the Adafruit-SSD1306-Library. This was done specifically to be used with TI's line of Stellaris Launchpad development boards.
+To use this library you will also need https://github.com/jakeson21/Stellaris-GFX-C-Library which is Adafruits GFX library converted into ANSI C.
 
 # Usage
 
