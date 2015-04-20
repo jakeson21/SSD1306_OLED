@@ -1,0 +1,502 @@
+******************************************************************************
+                  TI ARM Linker PC v5.2.4                      
+******************************************************************************
+>> Linked Mon Apr 20 09:41:08 2015
+
+OUTPUT FILE NAME:   <SSD1306_Demo.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00004221
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00004fd0  0003b030  R  X
+  SRAM                  20000000   00008000  00000dbc  00007244  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00004fd8   00004fd8    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00004496   00004496    r-x .text
+  00004704    00004704    00000716   00000716    r-- .const
+  00004e20    00004e20    000001b8   000001b8    r-- .cinit
+20000000    20000000    00000dbc   00000000    rw-
+  20000000    20000000    00000800   00000000    rw- .stack
+  20000800    20000800    00000570   00000000    rw- .data
+  20000d70    20000d70    0000004c   00000000    rw- .bss
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    00004496     
+                  0000026c    00001334     Adafruit_GFX.obj (.text)
+                  000015a0    000010ba     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.obj (.text)
+                  0000265a    000006ca     Stellaris_SSD1306.obj (.text)
+                  00002d24    00000394     main.obj (.text)
+                  000030b8    000001f4     rtsv7M4_T_le_v4SPD16_eabi.lib : ull_div_t2.obj (.text)
+                  000032ac    000001b6                                   : fd_add_t2.obj (.text)
+                  00003462    00000002     --HOLE-- [fill = 0]
+                  00003464    00000158     Stellaris_SSD1306.obj (.text:drawFastVLineInternal)
+                  000035bc    00000136     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_div_t2.obj (.text)
+                  000036f2    00000130     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
+                  00003822    00000002     --HOLE-- [fill = 0]
+                  00003824    00000110     rtsv7M4_T_le_v4SPD16_eabi.lib : xdscale.obj (.text)
+                  00003934    00000104     driverlib.lib : sysctl.obj (.text:SysCtlClockSet)
+                  00003a38    000000fe     Stellaris_SSD1306.obj (.text:drawFastHLineInternal)
+                  00003b36    000000fc     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_mul_t2.obj (.text)
+                  00003c32    00000002     --HOLE-- [fill = 0]
+                  00003c34    000000c8     driverlib.lib : sysctl.obj (.text:SysCtlClockGet)
+                  00003cfc    000000be     rtsv7M4_T_le_v4SPD16_eabi.lib : xdnorm.obj (.text)
+                  00003dba    0000009c                                   : memcpy_t2.obj (.text)
+                  00003e56    00000086                                   : fd_cmp_t2.obj (.text:__aeabi_cdcmple)
+                  00003edc    00000086                                   : fd_cmp_t2.obj (.text:__aeabi_cdrcmple)
+                  00003f62    0000007a                                   : memset_t2.obj (.text)
+                  00003fdc    0000006c                                   : autoinit.obj (.text)
+                  00004048    0000006a                                   : copy_decompress_rle.obj (.text)
+                  000040b2    00000066                                   : xdunscal.obj (.text)
+                  00004118    00000060                                   : sprintf.obj (.text)
+                  00004178    00000056                                   : ltoa.obj (.text)
+                  000041ce    00000052                                   : ldexp.obj (.text)
+                  00004220    00000050                                   : boot.obj (.text)
+                  00004270    0000004c                                   : atoi.obj (.text)
+                  000042bc    0000004c                                   : cpy_tbl.obj (.text)
+                  00004308    00000048     driverlib.lib : gpio.obj (.text:GPIOPinConfigure)
+                  00004350    00000048     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_toi_t2.obj (.text)
+                  00004398    00000044                                   : exit.obj (.text)
+                  000043dc    00000042     driverlib.lib : ssi.obj (.text:SSIConfigSetExpClk)
+                  0000441e    00000002     --HOLE-- [fill = 0]
+                  00004420    00000040     rtsv7M4_T_le_v4SPD16_eabi.lib : signal.obj (.text)
+                  00004460    00000034     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralEnable)
+                  00004494    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : feraiseexcept.obj (.text)
+                  000044c8    00000030                                   : xdclass.obj (.text)
+                  000044f8    00000030                                   : xferaise.obj (.text)
+                  00004528    0000002e                                   : i_tofd_t2.obj (.text)
+                  00004556    0000002e                                   : raise.obj (.text)
+                  00004584    0000002a     driverlib.lib : gpio.obj (.text:GPIODirModeSet)
+                  000045ae    0000002a     rtsv7M4_T_le_v4SPD16_eabi.lib : frexp.obj (.text)
+                  000045d8    0000001c                                   : memccpy.obj (.text)
+                  000045f4    00000018     driverlib.lib : gpio.obj (.text:GPIOPinTypeGPIOOutput)
+                  0000460c    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
+                  00004624    00000016                                   : strchr.obj (.text)
+                  0000463a    00000002     --HOLE-- [fill = 0]
+                  0000463c    00000014     driverlib.lib : fpu.obj (.text:FPUStackingEnable)
+                  00004650    00000014     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.text)
+                  00004664    00000014                                   : strlen.obj (.text)
+                  00004678    00000012     driverlib.lib : gpio.obj (.text:GPIOPinTypeSSI)
+                  0000468a    00000002     --HOLE-- [fill = 0]
+                  0000468c    00000010                   : fpu.obj (.text:FPUEnable)
+                  0000469c    0000000e                   : ssi.obj (.text:SSIDataPutNonBlocking)
+                  000046aa    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
+                  000046b8    0000000c                                   : copy_zero_init.obj (.text:decompress:ZI)
+                  000046c4    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  000046d0    0000000a     driverlib.lib : ssi.obj (.text:SSIDisable)
+                  000046da    0000000a                   : ssi.obj (.text:SSIEnable)
+                  000046e4    00000008                   : ssi.obj (.text:SSIBusy)
+                  000046ec    00000006                   : gpio.obj (.text:GPIOPinWrite)
+                  000046f2    00000006                   : sysctl.obj (.text:SysCtlDelay)
+                  000046f8    00000006     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
+                  000046fe    00000004                                   : pre_init.obj (.text)
+
+.const     0    00004704    00000716     
+                  00004704    000004fb     Adafruit_GFX.obj (.const:.string:font)
+                  00004bff    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.obj (.const:.string:_ctypes_)
+                  00004d00    00000090     driverlib.lib : gpio.obj (.const:g_pui32GPIOBaseAddrs)
+                  00004d90    0000006c                   : sysctl.obj (.const:g_pui32Xtals)
+                  00004dfc    0000001e     main.obj (.const:.string)
+
+.cinit     0    00004e20    000001b8     
+                  00004e20    00000194     (.cinit..data.load) [load image, compression = rle]
+                  00004fb4    0000000c     (__TI_handler_table)
+                  00004fc0    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00004fc8    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.stack     0    20000000    00000800     UNINITIALIZED
+                  20000000    00000800     --HOLE--
+
+.data      0    20000800    00000570     UNINITIALIZED
+                  20000800    00000400     Stellaris_SSD1306.obj (.data:buffer)
+                  20000c00    000000b0     rtsv7M4_T_le_v4SPD16_eabi.lib : signal.obj (.data:sigtable)
+                  20000cb0    00000080                                   : xvalues.obj (.data)
+                  20000d30    00000010     main.obj (.data)
+                  20000d40    00000008     Stellaris_SSD1306.obj (.data:postmask$drawFastVLineInternal_1)
+                  20000d48    00000008     Stellaris_SSD1306.obj (.data:premask$drawFastVLineInternal_1)
+                  20000d50    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.data)
+                  20000d58    00000008                                   : exit.obj (.data)
+                  20000d60    00000008                                   : feraiseexcept.obj (.data)
+                  20000d68    00000004                                   : errno.obj (.data)
+                  20000d6c    00000004                                   : stkdepth_vars.obj (.data)
+
+.bss       0    20000d70    0000004c     UNINITIALIZED
+                  20000d70    00000020     (.common:strbuffer)
+                  20000d90    0000001c     (.common:sAdafruit_GFX)
+                  20000dac    00000010     (.common:ssd1306)
+
+.TI.persistent 
+*          0    20000800    00000000     UNINITIALIZED
+
+.TI.noinit 
+*          0    20000d70    00000000     UNINITIALIZED
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00004fc8 records: 2, size/record: 8, table size: 16
+	.data: load addr=00004e20, load size=00000194 bytes, run addr=20000800, run size=00000570 bytes, compression=rle
+	.bss: load addr=00004fc0, load size=00000008 bytes, run addr=20000d70, run size=0000004c bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00004fb4 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                            
+-------   ----                            
+0000026d  Adafruit_GFX_init               
+00004399  C$$EXIT                         
+0000468d  FPUEnable                       
+0000463d  FPUStackingEnable               
+00004585  GPIODirModeSet                  
+000036f3  GPIOPadConfigSet                
+00004309  GPIOPinConfigure                
+000045f5  GPIOPinTypeGPIOOutput           
+00004679  GPIOPinTypeSSI                  
+000046ed  GPIOPinWrite                    
+000012af  Print                           
+000046c5  ResetISR                        
+UNDEFED   SHT$$INIT_ARRAY$$Base           
+UNDEFED   SHT$$INIT_ARRAY$$Limit          
+000046e5  SSIBusy                         
+000043dd  SSIConfigSetExpClk              
+0000469d  SSIDataPutNonBlocking           
+000046d1  SSIDisable                      
+000046db  SSIEnable                       
+00003c35  SysCtlClockGet                  
+00003935  SysCtlClockSet                  
+000046f3  SysCtlDelay                     
+00004461  SysCtlPeripheralEnable          
+00001225  Write                           
+000044c9  _Dclass                         
+20000cb0  _Denorm                         
+00003cfd  _Dnorm                          
+00003825  _Dscale                         
+000040b3  _Dunscale                       
+20000cc0  _Eps                            
+20000d68  _Errno                          
+20000d60  _Fenv                           
+000044f9  _Feraise                        
+20000cd0  _Hugeval                        
+20000ce0  _Inf                            
+20000cf0  _Nan                            
+20000d10  _Rteps                          
+20000d00  _Snan                           
+20000d64  _Tls_setup__Fenv                
+20000d20  _Xbig                           
+20000d28  _Zero                           
+20000800  __STACK_END                     
+00000800  __STACK_SIZE                    
+20000200  __STACK_TOP                     
+00004fc8  __TI_CINIT_Base                 
+00004fd8  __TI_CINIT_Limit                
+00004fb4  __TI_Handler_Table_Base         
+00004fc0  __TI_Handler_Table_Limit        
+00003fdd  __TI_auto_init                  
+20000d58  __TI_cleanup_ptr                
+000046ab  __TI_decompress_none            
+000046f9  __TI_decompress_rle24           
+20000d5c  __TI_dtors_ptr                  
+00002355  __TI_printfi                    
+00000000  __TI_static_base__              
+000046b9  __TI_zero_init                  
+00003e57  __aeabi_cdcmpeq                 
+00003e57  __aeabi_cdcmple                 
+00003edd  __aeabi_cdrcmple                
+00004351  __aeabi_d2iz                    
+000032b7  __aeabi_dadd                    
+000035bd  __aeabi_ddiv                    
+00003b37  __aeabi_dmul                    
+000032ad  __aeabi_dsub                    
+00004529  __aeabi_i2d                     
+00003f63  __aeabi_memclr                  
+00003f63  __aeabi_memclr4                 
+00003f63  __aeabi_memclr8                 
+00003dbb  __aeabi_memcpy                  
+00003dbb  __aeabi_memcpy4                 
+00003dbb  __aeabi_memcpy8                 
+00003f65  __aeabi_memset                  
+00003f65  __aeabi_memset4                 
+00003f65  __aeabi_memset8                 
+000030b9  __aeabi_uldivmod                
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+20000000  __stack                         
+0000460d  _args_main                      
+00004221  _c_int00                        
+00004bff  _ctypes_                        
+20000d50  _lock                           
+0000465f  _nop                            
+00004657  _register_lock                  
+00004651  _register_unlock                
+000046ff  _system_pre_init                
+20000d54  _unlock                         
+0000439d  abort                           
+00004271  atoi                            
+ffffffff  binit                           
+20000800  buffer                          
+00002aeb  clearDisplay                    
+000042bd  copy_in                         
+00002aa9  dim                             
+000010b5  drawBitmap                      
+000012cf  drawChar                        
+000002d5  drawCircle                      
+000004d7  drawCircleHelper                
+00002b01  drawFastHLine                   
+00003a39  drawFastHLineInternal           
+00002c13  drawFastVLine                   
+00003465  drawFastVLineInternal           
+00000865  drawLine                        
+000027c3  drawPixel                       
+000009cd  drawRect                        
+00000acf  drawRoundRect                   
+00000d2d  drawTriangle                    
+00001169  drawXBitmap                     
+000043a5  exit                            
+00004495  feraiseexcept                   
+00000691  fillCircle                      
+000006ef  fillCircleHelper                
+00000a4f  fillRect                        
+00000c65  fillRoundRect                   
+00000aa1  fillScreen                      
+00000d9b  fillTriangle                    
+20000d34  fmtA                            
+20000d38  fmtB                            
+20000d30  fmtS                            
+20000d3c  fmtadc                          
+00004704  font                            
+000045af  frexp                           
+00000000  g_pfnVectors                    
+00001519  getRotation                     
+00002e2d  hardware_init                   
+0000158d  height                          
+000027a1  invertDisplay                   
+000041cf  ldexp                           
+00004179  ltoa                            
+00002d25  main                            
+20000d6c  main_func_sp                    
+000045d9  memccpy                         
+00003dbb  memcpy                          
+00003f6b  memset                          
+20000d40  postmask$drawFastVLineInternal_1
+20000d48  premask$drawFastVLineInternal_1 
+00004557  raise                           
+20000d90  sAdafruit_GFX                   
+000014a5  setCursor                       
+00001527  setRotation                     
+000014e9  setTextColor                    
+000014c7  setTextSize                     
+00001503  setTextWrap                     
+00004421  signal                          
+00004119  sprintf                         
+20000dac  ssd1306                         
+00002fd9  ssd1306_TopNRows                
+00002681  ssd1306_begin                   
+00002ef9  ssd1306_command                 
+00002f25  ssd1306_data                    
+00002f53  ssd1306_display                 
+0000265b  ssd1306_init                    
+00002a39  startscrolldiagleft             
+000029d7  startscrolldiagright            
+00002985  startscrollleft                 
+00002933  startscrollright                
+00002a9b  stopscroll                      
+20000d70  strbuffer                       
+00004625  strchr                          
+00004665  strlen                          
+0000157d  width                           
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                            
+-------   ----                            
+00000000  __TI_static_base__              
+00000000  g_pfnVectors                    
+0000026d  Adafruit_GFX_init               
+000002d5  drawCircle                      
+000004d7  drawCircleHelper                
+00000691  fillCircle                      
+000006ef  fillCircleHelper                
+00000800  __STACK_SIZE                    
+00000865  drawLine                        
+000009cd  drawRect                        
+00000a4f  fillRect                        
+00000aa1  fillScreen                      
+00000acf  drawRoundRect                   
+00000c65  fillRoundRect                   
+00000d2d  drawTriangle                    
+00000d9b  fillTriangle                    
+000010b5  drawBitmap                      
+00001169  drawXBitmap                     
+00001225  Write                           
+000012af  Print                           
+000012cf  drawChar                        
+000014a5  setCursor                       
+000014c7  setTextSize                     
+000014e9  setTextColor                    
+00001503  setTextWrap                     
+00001519  getRotation                     
+00001527  setRotation                     
+0000157d  width                           
+0000158d  height                          
+00002355  __TI_printfi                    
+0000265b  ssd1306_init                    
+00002681  ssd1306_begin                   
+000027a1  invertDisplay                   
+000027c3  drawPixel                       
+00002933  startscrollright                
+00002985  startscrollleft                 
+000029d7  startscrolldiagright            
+00002a39  startscrolldiagleft             
+00002a9b  stopscroll                      
+00002aa9  dim                             
+00002aeb  clearDisplay                    
+00002b01  drawFastHLine                   
+00002c13  drawFastVLine                   
+00002d25  main                            
+00002e2d  hardware_init                   
+00002ef9  ssd1306_command                 
+00002f25  ssd1306_data                    
+00002f53  ssd1306_display                 
+00002fd9  ssd1306_TopNRows                
+000030b9  __aeabi_uldivmod                
+000032ad  __aeabi_dsub                    
+000032b7  __aeabi_dadd                    
+00003465  drawFastVLineInternal           
+000035bd  __aeabi_ddiv                    
+000036f3  GPIOPadConfigSet                
+00003825  _Dscale                         
+00003935  SysCtlClockSet                  
+00003a39  drawFastHLineInternal           
+00003b37  __aeabi_dmul                    
+00003c35  SysCtlClockGet                  
+00003cfd  _Dnorm                          
+00003dbb  __aeabi_memcpy                  
+00003dbb  __aeabi_memcpy4                 
+00003dbb  __aeabi_memcpy8                 
+00003dbb  memcpy                          
+00003e57  __aeabi_cdcmpeq                 
+00003e57  __aeabi_cdcmple                 
+00003edd  __aeabi_cdrcmple                
+00003f63  __aeabi_memclr                  
+00003f63  __aeabi_memclr4                 
+00003f63  __aeabi_memclr8                 
+00003f65  __aeabi_memset                  
+00003f65  __aeabi_memset4                 
+00003f65  __aeabi_memset8                 
+00003f6b  memset                          
+00003fdd  __TI_auto_init                  
+000040b3  _Dunscale                       
+00004119  sprintf                         
+00004179  ltoa                            
+000041cf  ldexp                           
+00004221  _c_int00                        
+00004271  atoi                            
+000042bd  copy_in                         
+00004309  GPIOPinConfigure                
+00004351  __aeabi_d2iz                    
+00004399  C$$EXIT                         
+0000439d  abort                           
+000043a5  exit                            
+000043dd  SSIConfigSetExpClk              
+00004421  signal                          
+00004461  SysCtlPeripheralEnable          
+00004495  feraiseexcept                   
+000044c9  _Dclass                         
+000044f9  _Feraise                        
+00004529  __aeabi_i2d                     
+00004557  raise                           
+00004585  GPIODirModeSet                  
+000045af  frexp                           
+000045d9  memccpy                         
+000045f5  GPIOPinTypeGPIOOutput           
+0000460d  _args_main                      
+00004625  strchr                          
+0000463d  FPUStackingEnable               
+00004651  _register_unlock                
+00004657  _register_lock                  
+0000465f  _nop                            
+00004665  strlen                          
+00004679  GPIOPinTypeSSI                  
+0000468d  FPUEnable                       
+0000469d  SSIDataPutNonBlocking           
+000046ab  __TI_decompress_none            
+000046b9  __TI_zero_init                  
+000046c5  ResetISR                        
+000046d1  SSIDisable                      
+000046db  SSIEnable                       
+000046e5  SSIBusy                         
+000046ed  GPIOPinWrite                    
+000046f3  SysCtlDelay                     
+000046f9  __TI_decompress_rle24           
+000046ff  _system_pre_init                
+00004704  font                            
+00004bff  _ctypes_                        
+00004fb4  __TI_Handler_Table_Base         
+00004fc0  __TI_Handler_Table_Limit        
+00004fc8  __TI_CINIT_Base                 
+00004fd8  __TI_CINIT_Limit                
+20000000  __stack                         
+20000200  __STACK_TOP                     
+20000800  __STACK_END                     
+20000800  buffer                          
+20000cb0  _Denorm                         
+20000cc0  _Eps                            
+20000cd0  _Hugeval                        
+20000ce0  _Inf                            
+20000cf0  _Nan                            
+20000d00  _Snan                           
+20000d10  _Rteps                          
+20000d20  _Xbig                           
+20000d28  _Zero                           
+20000d30  fmtS                            
+20000d34  fmtA                            
+20000d38  fmtB                            
+20000d3c  fmtadc                          
+20000d40  postmask$drawFastVLineInternal_1
+20000d48  premask$drawFastVLineInternal_1 
+20000d50  _lock                           
+20000d54  _unlock                         
+20000d58  __TI_cleanup_ptr                
+20000d5c  __TI_dtors_ptr                  
+20000d60  _Fenv                           
+20000d64  _Tls_setup__Fenv                
+20000d68  _Errno                          
+20000d6c  main_func_sp                    
+20000d70  strbuffer                       
+20000d90  sAdafruit_GFX                   
+20000dac  ssd1306                         
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+ffffffff  binit                           
+UNDEFED   SHT$$INIT_ARRAY$$Base           
+UNDEFED   SHT$$INIT_ARRAY$$Limit          
+
+[161 symbols]
