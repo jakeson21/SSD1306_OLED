@@ -192,42 +192,34 @@ Or for non TIRTOS:
 #include <driverlib/pin_map.h>
 #include <driverlib/ssi.h>
 
-void ssd1306_command(tSSD1306 *psInstSSD, uint8_t c) {
-	// Set DC LOW for command and DC HIGH for data
-	ROM_GPIOPinWrite(psInstSSD->gpio_port_base, psInstSSD->dc, 0);
 
-	// Wait until any SPI device is inactive
-	while (ROM_SSIBusy(psInstSSD->ssi_base)) {
-	}
-	// Disable the SSI interface
-	ROM_SSIDisable(psInstSSD->ssi_base);
-	// Fill the Transmit FIFO
-	ROM_SSIDataPutNonBlocking(psInstSSD->ssi_base, c);
-	//Enable SSI
-	ROM_SSIEnable(psInstSSD->ssi_base);
-	while (ROM_SSIBusy(psInstSSD->ssi_base)) {
-	}
-	ROM_SSIDisable(psInstSSD->ssi_base);
+//------------------------------------------
+// Send a command frame
+//------------------------------------------
+void ssd1306_command(tSSD1306 *psInstSSD, uint8_t data) {
+	// Set DC LOW for command
+	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, 0);
+	SSIDataPut(SSI0_BASE, data);
+	while(SSIBusy(SSI0_BASE)){}
 }
 
-void ssd1306_data(tSSD1306 *psInstSSD, uint8_t c) {
-	// Set DC LOW for command and DC HIGH for data
-	ROM_GPIOPinWrite(psInstSSD->gpio_port_base, psInstSSD->dc, psInstSSD->dc);
-
-	while (ROM_SSIBusy(psInstSSD->ssi_base)) {
-	}
-	// Disable the SSI interface
-	ROM_SSIDisable(psInstSSD->ssi_base);
-	// Fill the Transmit FIFO
-	ROM_SSIDataPutNonBlocking(psInstSSD->ssi_base, c);
-	//Enable SSI
-	ROM_SSIEnable(psInstSSD->ssi_base);
-	while (ROM_SSIBusy(psInstSSD->ssi_base)) {
-	}
-	ROM_SSIDisable(psInstSSD->ssi_base);
+//------------------------------------------
+// Send a data frame
+//------------------------------------------
+void ssd1306_data(tSSD1306 *psInstSSD, uint8_t data) {
+	// Set DC HIGH for data
+	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, psInstSSD->dc_pin);
+	SSIDataPut(SSI0_BASE, data);
+	while(SSIBusy(SSI0_BASE)){}
 }
 
-void display(tSSD1306 *psInstSSD) {
+//------------------------------------------
+// Update the entire display
+//------------------------------------------
+void ssd1306_display(tSSD1306 *psInstSSD) {
+    // Set DC LOW for command
+	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, 0);
+
 	ssd1306_command(psInstSSD, SSD1306_COLUMNADDR);
 	ssd1306_command(psInstSSD, 0);   // Column start address (0 = reset)
 	ssd1306_command(psInstSSD, SSD1306_LCDWIDTH - 1); // Column end address (127 = reset)
@@ -244,22 +236,10 @@ void display(tSSD1306 *psInstSSD) {
 	ssd1306_command(psInstSSD, 1); // Page end address
 #endif
 
-	// Set DC LOW for command and DC HIGH for data
-	ROM_GPIOPinWrite(psInstSSD->gpio_port_base, psInstSSD->dc, psInstSSD->dc);
-	// SPI
-	uint16_t i;
-	for (i = 0; i < (SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8); i++) {
-		// Wait until any SPI device is inactive
-		while (ROM_SSIBusy(psInstSSD->ssi_base)) {
-		}
-		ROM_SSIDisable(psInstSSD->ssi_base);
-		ROM_SSIDataPutNonBlocking(psInstSSD->ssi_base, psInstSSD->psInstGfx->buffer[i]);
-		ROM_SSIEnable(psInstSSD->ssi_base);
+	uint16_t n=0;
+	for (n=0; n<SPI_MSG_LENGTH; n++){
+		ssd1306_data(psInstSSD, psInstSSD->psInstGfx->buffer[n]);
 	}
-	// Wait until any SPI device is inactive
-	while (ROM_SSIBusy(psInstSSD->ssi_base)) {
-	}
-	ROM_SSIDisable(psInstSSD->ssi_base);
 }
 
 ```
