@@ -3,11 +3,12 @@ TI Stellaris library for SSD1306 based OLED screens
 
 
 This library is a ANSI C adaptation of the Adafruit-SSD1306-Library. This was done specifically to be used with TI's line of Stellaris Launchpad development boards.
+To use this library you will also need https://github.com/jakeson21/Stellaris-GFX-C-Library which is Adafruits GFX library converted into ANSI C.
 
 # Usage
 
 Declare in main.c:
-`
+```C
 #include <Stellaris_SSD1306.h>
 #include <Adafruit_GFX.h>
 
@@ -24,56 +25,57 @@ void ssd1306_display(tSSD1306 *psInstSSD);
 void ssd1306_command(tSSD1306 *psInstSSD, uint8_t c);
 void ssd1306_data(tSSD1306 *psInstSSD, uint8_t c);
 void ssd1306_TopNRows(tSSD1306 *psInstSSD, uint8_t N);
-`
+```
 
 Within main(void):
-`
+
+```C
 // Setup Graphics objects
 Adafruit_GFX_init(&sAdafruit_GFX, SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT, buffer);
 setRotation(&sAdafruit_GFX, 0);
 ssd1306_init(&ssd1306, &sAdafruit_GFX, SPI_DC_PIN_BASE, SPI_DC_PIN);
 ssd1306.psInstGfx->textcolor = WHITE;
 ssd1306.psInstGfx->textbgcolor = BLACK;
-`
+```
 
 Define these functions (these are compatable with TIRTOS):
-`
+```C
 //------------------------------------------
 // Send a command frame
 //------------------------------------------
 void ssd1306_command(tSSD1306 *psInstSSD, uint8_t c) {
-    SPI_Transaction masterTransaction;
-    bool transferOK;
+	SPI_Transaction masterTransaction;
+	bool transferOK;
 
 	// Set DC LOW for command
 	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, 0);
 
-    /* Initialize master SPI transaction structure */
-    masterTransaction.count = 1;
-    masterTransaction.txBuf = (Ptr)&c;
-    masterTransaction.rxBuf = NULL;
+	/* Initialize master SPI transaction structure */
+	masterTransaction.count = 1;
+	masterTransaction.txBuf = (Ptr)&c;
+	masterTransaction.rxBuf = NULL;
 
-    /* Initialize SPI handle as default master */
-    masterSpi = SPI_open(Board_SPI0, &spiParams);
-    if (masterSpi == NULL) {
-    	Log_info0("Error initializing SPI");
-    }
-    else {
-//    	Log_info0("SPI initialized");
-    }
-
-    /* Initiate SPI transfer */
-    transferOK = SPI_transfer(masterSpi, &masterTransaction);
-
-    if(transferOK) {
-        /* Print contents of master receive buffer */
+	/* Initialize SPI handle as default master */
+	masterSpi = SPI_open(Board_SPI0, &spiParams);
+	if (masterSpi == NULL) {
+		Log_info0("Error initializing SPI");
 	}
-    else {
-//    	Log_info0("Unsuccessful master SPI transfer");
-    }
+	else {
+//    	Log_info0("SPI initialized");
+	}
 
-    /* Deinitialize SPI */
-    SPI_close(masterSpi);
+	/* Initiate SPI transfer */
+	transferOK = SPI_transfer(masterSpi, &masterTransaction);
+
+	if(transferOK) {
+		/* Print contents of master receive buffer */
+	}
+	else {
+//    	Log_info0("Unsuccessful master SPI transfer");
+	}
+
+	/* Deinitialize SPI */
+	SPI_close(masterSpi);
 
 }
 
@@ -81,38 +83,38 @@ void ssd1306_command(tSSD1306 *psInstSSD, uint8_t c) {
 // Send a data frame
 //------------------------------------------
 void ssd1306_data(tSSD1306 *psInstSSD, uint8_t c) {
-    SPI_Transaction masterTransaction;
-    bool transferOK;
+	SPI_Transaction masterTransaction;
+	bool transferOK;
 
 	// Set DC HIGH for data
 	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, psInstSSD->dc_pin);
 
-    /* Initialize master SPI transaction structure */
-    masterTransaction.count = 1;
-    masterTransaction.txBuf = (Ptr)&c;
-    masterTransaction.rxBuf = NULL;
+	/* Initialize master SPI transaction structure */
+	masterTransaction.count = 1;
+	masterTransaction.txBuf = (Ptr)&c;
+	masterTransaction.rxBuf = NULL;
 
-    /* Initialize SPI handle as default master */
-    masterSpi = SPI_open(Board_SPI0, &spiParams);
-    if (masterSpi == NULL) {
-    	Log_info0("Error initializing SPI");
-    }
-    else {
+	/* Initialize SPI handle as default master */
+	masterSpi = SPI_open(Board_SPI0, &spiParams);
+	if (masterSpi == NULL) {
+		Log_info0("Error initializing SPI");
+	}
+	else {
 //    	Log_info0("SPI initialized");
-    }
+	}
 
-    /* Initiate SPI transfer */
-    transferOK = SPI_transfer(masterSpi, &masterTransaction);
+	/* Initiate SPI transfer */
+	transferOK = SPI_transfer(masterSpi, &masterTransaction);
 
-    if(transferOK) {
-        /* Print contents of master receive buffer */
-    }
-    else {
+	if(transferOK) {
+		/* Print contents of master receive buffer */
+	}
+	else {
 //    	Log_info0("Unsuccessful master SPI transfer");
-    }
+	}
 
-    /* Deinitialize SPI */
-    SPI_close(masterSpi);
+	/* Deinitialize SPI */
+	SPI_close(masterSpi);
 
 }
 
@@ -120,10 +122,10 @@ void ssd1306_data(tSSD1306 *psInstSSD, uint8_t c) {
 // Update the entire display
 //------------------------------------------
 void ssd1306_display(tSSD1306 *psInstSSD) {
-    SPI_Transaction masterTransaction;
-    bool transferOK;
+	SPI_Transaction masterTransaction;
+	bool transferOK;
 
-    // Set DC LOW for command
+	// Set DC LOW for command
 	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, 0);
 
 	ssd1306_command(psInstSSD, SSD1306_COLUMNADDR);
@@ -175,14 +177,14 @@ void ssd1306_display(tSSD1306 *psInstSSD) {
 		SPI_close(masterSpi);
 	}
 
-    // Set DC LOW for command
+	// Set DC LOW for command
 	GPIOPinWrite(psInstSSD->dc_port_base, psInstSSD->dc_pin, 0);
 }
-`
+```
 
 Or for non TIRTOS:
 
-`
+```C
 #include <driverlib/gpio.h>
 #include <driverlib/rom.h>
 #include <driverlib/sysctl.h>
@@ -260,6 +262,4 @@ void display(tSSD1306 *psInstSSD) {
 	ROM_SSIDisable(psInstSSD->ssi_base);
 }
 
-`
-
-
+```
